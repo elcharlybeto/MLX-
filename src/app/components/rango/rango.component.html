@@ -1,0 +1,31 @@
+<div class="filtros">
+    <form class="form form-med"  #form="ngForm">
+        <label for="desde" class="form-label">Desde</label>
+          <input
+            type="date"
+            class="form-control"
+            name="desde"
+            id="desde"
+            aria-describedby="helpId"
+            placeholder=""
+            [(ngModel)]="rango.desde"
+            #desde="ngModel"
+            required
+          />
+          <br>
+          <label for="hasta" class="form-label">Hasta</label>
+          <input
+            type="date"
+            class="form-control"
+            name="hasta"
+            id="hasta"
+            aria-describedby="helpId"
+            placeholder=""
+            [(ngModel)]="rango.hasta"
+            #hasta="ngModel"
+            required
+          />
+          <br>
+          <button type="submit" class="btn btn-danger" [disabled]="!form.valid" (click)="onSubmit()">SELECCIONAR</button>
+    </form>
+    </div>

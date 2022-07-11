@@ -1,0 +1,85 @@
+<div *ngIf="listar">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Fecha</th>
+          <th>Importe</th>
+          <th>Cliente</th>
+          <th>Observaciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let renglon of resultado,let i=index">
+          <td>{{ renglon.Tipo=='r'?"REPARACIÓN":renglon.Tipo=='g'?'GASTO':renglon.Tipo=='c'?'COMPRA':'VENTA' }}</td>
+          <td>{{ renglon.Fecha | date:'dd-MM'}}</td>
+          <td>{{ (renglon.Importe >0? renglon.Importe: -renglon.Importe)| currency:"":"symbol":".0" }}</td>
+          <td>{{ renglon.Cliente | uppercase}}</td>
+          <td>{{ renglon.Obs | uppercase  }}</td>
+    
+          <button (click)="editar(renglon)" class="btn btn-outline-secondary">Editar</button>
+          <button (click)="borrar(renglon)" class="btn btn-outline-primary">Borrar</button>
+         
+    
+
+        </tr>
+      </tbody>
+    </table>
+    
+    </div>
+    <div class="edita" *ngIf="formEdit">
+      <form [formGroup]="editaForm">
+        <button type="button" class="btn btn-dark">{{ operacion.Tipo=='r'?"REPARACIÓN":operacion.Tipo=='g'?'GASTO':operacion.Tipo=='c'?'COMPRA':'VENTA' }}</button>
+        <hr>
+        <button type="submit" class="cierra" (click)="oculta()">x</button>
+          <div class="mb-3">
+              <label for="Fecha" class="form-label">Fecha</label>
+              <input
+                type="date"
+                class="form-control"
+                name="Fecha"
+                id="Fecha"
+                aria-describedby="helpId"
+                placeholder=""
+                formControlName="fecha"
+                required
+              />
+            </div>
+        
+            <div *ngIf="operacion.Tipo!='c'" class="mb-3">
+              <label for="Cliente" class="form-label">Cliente</label>
+              <input
+                type="text"
+                name="Cliente"
+                id="Cliente"
+                class="form-control"
+                placeholder= {{tip}}
+                aria-describedby="helpId"
+                formControlName="cliente"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="Importe" class="form-label">Importe</label>
+              <input
+                type="number"
+                class="form-control"
+                name="Importe"
+                id="Importe"
+                aria-describedby="helpId"
+                placeholder=""
+                formControlName="importe"
+                
+              />
+            </div>
+            
+            <div class="mb-3">
+              <label for="Obs" class="form-label">OBSERVACIONES</label>
+              <input type="text" class="form-control" name="Obs" id="Obs"  value={{operacion.Obs}} formControlName="obs"/>
+            </div>
+            
+            <button type="submit" class="btn btn-danger" [disabled]="!editaForm.valid" (click)="onSubmit(editaForm.value)">GUARDAR</button>
+            
+      </form>
+      
+     
+     </div>

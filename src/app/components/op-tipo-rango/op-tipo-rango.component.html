@@ -1,0 +1,119 @@
+<div class="op-tipo-rango-args" *ngIf="args">
+    <form  #form="ngForm">
+    <div class="fieldset">   
+    <fieldset>
+      
+               
+            <label class="btn ">
+                <input type="radio" class="me-2" name="TipoOp" id="" value="c" [(ngModel)]="tipOp"  checked > COMPRA
+            </label>
+            <label class="btn btn-primary|secondary|success|danger|warning|info|light|dark|link">
+                <input type="radio" name="TipoOp" id="" value="v" [(ngModel)]="tipOp"> VENTA
+            </label>
+            <label class="btn btn-primary|secondary|success|danger|warning|info|light|dark|link">
+                <input type="radio" name="TipoOp" id="" value="r" [(ngModel)]="tipOp"> REPARACIÓN
+            </label>
+            <label class="btn btn-primary|secondary|success|danger|warning|info|light|dark|link">
+                <input type="radio" name="TipoOp" id="" value="g" [(ngModel)]="tipOp"> GASTO
+            </label>
+        
+    
+    </fieldset>
+    </div>
+    
+    <label for="desde" class="form-label">Desde</label>
+    <input
+      type="date"
+      class="form-control"
+      name="desde"
+      id="desde"
+      aria-describedby="helpId"
+      value="desde"
+      placeholder=""
+      [(ngModel)]="desde"
+      
+    />
+    <br>
+    <label for="hasta" class="form-label">Hasta</label>
+    <input
+      type="date"
+      class="form-control"
+      name="hasta"
+      id="hasta"
+      aria-describedby="helpId"
+      value="hasta"
+      placeholder=""
+      [(ngModel)]="hasta"
+      
+    />
+    <br>
+    <button type="submit" class="btn btn-danger" [disabled]="!form.valid" (click)="onSubmit()">SELECCIONAR</button>
+    </form>
+    
+    </div>
+
+    <div class="tiporango" *ngIf="!args">
+        <button type="button" class="btn btn-danger ">{{tipoString}}</button>
+        <hr>
+
+        <div *ngIf="tipOp=='c'|| tipOp=='g'">
+            <table class="table table-striped">
+                <thead class="thead-inverse|thead-default">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Importe</th>
+                        <th>Observaciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let renglon of resultado, let i=index">
+                            <td>{{renglon.Fecha | date:'dd-MM-yy'}}</td>
+                            <td>{{-renglon.Importe | currency:"":"symbol":".0"}}</td>
+                            <td>{{renglon.Obs | uppercase}}</td>
+                        </tr>
+                    </tbody>
+            </table>
+            
+           </div>
+
+       <div *ngIf="tipOp=='v'">
+        <table class="table table-striped">
+                <thead class="thead-inverse|thead-default">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Importe</th>
+                        <th>Observaciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let renglon of resultado, let i=index">
+                            <td>{{renglon.Fecha | date:'dd-MM-yy'}}</td>
+                            <td>{{renglon.Cliente | uppercase}}</td>
+                            <td>{{renglon.Importe | currency:"":"symbol":".0"}}</td>
+                            <td>{{renglon.Obs | uppercase}}</td>
+                        </tr>
+                    </tbody>
+            </table>
+       </div>
+       <div *ngIf="tipOp=='r'">
+        <table class="table table-striped">
+            <thead class="thead-inverse|thead-default">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Importe</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let renglon of resultado, let i=index">
+                        <td>{{renglon.Fecha | date:'dd-MM-yy'}}</td>
+                        <td>{{renglon.Cliente | uppercase}}</td>
+                        <td>{{renglon.total | currency:"":"symbol":".0"}}</td>
+                    </tr>
+                </tbody>
+        </table>
+        
+       </div>
+      
+    </div>

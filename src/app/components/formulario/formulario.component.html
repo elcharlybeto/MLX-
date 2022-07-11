@@ -1,0 +1,57 @@
+<div class="registra">
+    <div class="form-med">
+      <form #form="ngForm">
+        <div class="mb-3">
+          <label for="Fecha" class="form-label">Fecha (Se puede omitir si es HOY)</label>
+          <input
+            type="date"
+            class="form-control"
+            name="Fecha"
+            id="Fecha"
+            aria-describedby="helpId"
+            placeholder=""
+            [(ngModel)]="operacion.Fecha"
+            #Fecha="ngModel"
+            required
+          />
+        </div>
+    
+        <div *ngIf="Tipo!='c'" class="mb-3">
+          <label for="Cliente" class="form-label">Cliente</label>
+          <input
+            type="text"
+            name="Cliente"
+            id="Cliente"
+            class="form-control"
+            placeholder= {{tip}}
+            aria-describedby="helpId"
+            [(ngModel)]="operacion.Cliente"
+            #Cliente="ngModel"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="Importe" class="form-label">Importe</label>
+          <input
+            type="number"
+            class="form-control"
+            name="Importe"
+            id="Importe"
+            aria-describedby="helpId"
+            placeholder=""
+            [(ngModel)]="operacion.Importe"
+            #Importe="ngModel"
+            required
+            min="1"
+          />
+        </div>
+        <div *ngIf="Importe.invalid && Importe.touched">Debe ingresar un Importe válido</div>
+        <div class="mb-3">
+          <label for="Obs" class="form-label">OBSERVACIONES</label>
+          <textarea class="form-control" name="Obs" id="Obs" rows="2" [(ngModel)]="operacion.Obs"
+          #Obs="ngModel"></textarea>
+        </div>
+        <button type="submit" class="btn btn-danger" [disabled]="!form.valid" (click)="onSubmit(operacion)">GUARDAR</button>
+      </form>
+     
+    </div>
+    </div>

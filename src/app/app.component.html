@@ -1,0 +1,28 @@
+<div class="container container-fluid pt-2">
+  <a [routerLink]="['home']" routerLinkActive="router-link-active" class="btn btn-primary">HOME</a>
+  <a [routerLink]="['/registra/c']" routerLinkActive="router-link-active"   class="btn btn-danger">COMPRA</a>
+  <a [routerLink]="['/registra/v']" routerLinkActive="router-link-active" class="btn btn-success">VENTA</a>
+  <a [routerLink]="['/registra/r']" routerLinkActive="router-link-active" class="btn btn-success">REPARACIÓN</a>
+  <a [routerLink]="['/registra/g']" routerLinkActive="router-link-active" class="btn btn-danger">GASTO</a>
+
+<!-- <div class="dropdown dropend"> -->
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+    CONSULTAS
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" [routerLink]="['/lista']" routerLinkActive="router-link-active">Todas las Operaciones</a></li>
+    <li><a class="dropdown-item" [routerLink]="['/hoy']" routerLinkActive="router-link-active">Operaciones de Hoy</a></li>
+    <li><a class="dropdown-item" [routerLink]="['/rangoop']" routerLinkActive="router-link-active">Operaciones por Fecha</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" [routerLink]="['/results']" routerLinkActive="router-link-active">Resultados</a></li>
+    <li><a class="dropdown-item" [routerLink]="['/opxtipo']" routerLinkActive="router-link-active">Operaciones x Tipo</a></li>
+    <li><a class="dropdown-item" [routerLink]="['/top']" routerLinkActive="router-link-active">Top Clientes</a></li>
+  </ul>
+<!-- </div> -->
+<div class="outlet">
+<router-outlet></router-outlet>
+</div>
+
+</div>
+
+

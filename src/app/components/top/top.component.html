@@ -1,0 +1,18 @@
+<div>
+<button type="button" class="btn btn-danger ">TOP CLIENTES</button>
+<hr>
+<table class="table table-striped">
+    <thead class="thead-inverse|thead-default">
+        <tr>
+            <th>Cliente</th>
+            <th>Importe</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let renglon of resultado, let i=index">
+                <td>{{renglon.Cliente | uppercase}}</td>
+                <td>{{renglon.total | currency:"":"symbol":".0"}}</td>
+            </tr>
+        </tbody>
+</table>
+</div>

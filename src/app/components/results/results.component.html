@@ -1,0 +1,33 @@
+<div class="tabla-resultados">
+    <table class="table table-success text-center ">
+        <thead class="table-dark">
+            <tr>
+                <th>Categoría</th>
+                <th>Hoy</th>
+                <th>Mes</th>
+                <th>Año</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Ingresos</strong></td>
+                <td>{{ingresosHoy|currency:"":"symbol":".0"}}</td>
+                <td>{{ingresosMes|currency:"":"symbol":".0"}}</td>
+                <td>{{ingresosAnio|currency:"":"symbol":".0"}}</td>
+            </tr>
+            <tr>
+                <td><strong>Egresos</strong></td>
+                <td>{{egresosHoy|currency:"":"symbol":".0"}}</td>
+                <td>{{egresosMes|currency:"":"symbol":".0"}}</td>
+                <td>{{egresosAnio|currency:"":"symbol":".0"}}</td>
+            </tr>
+            <tr >
+                <td style="background-color: rgb(240, 226, 35)"><strong>Neto</strong></td>
+                <td style="color: rgb(15, 15, 94); background-color: rgb(240, 226, 35) !important"><strong><a class="dropdown-item" [routerLink]="['/hoy']">{{ingresosHoy-egresosHoy|currency:"":"symbol":".0"}}</a></strong></td>
+                <td style="color: rgb(15, 15, 94); background-color: rgb(240, 226, 35)"><strong><a class="dropdown-item" [routerLink]="[rutaM]">{{ingresosMes-egresosMes|currency:"":"symbol":".0"}}</a></strong></td>
+                <td style="color: rgb(15, 15, 94); background-color: rgb(240, 226, 35)"><strong><a class="dropdown-item" [routerLink]="[rutaA]">{{ingresosAnio-egresosAnio|currency:"":"symbol":".0"}}</a></strong></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    
